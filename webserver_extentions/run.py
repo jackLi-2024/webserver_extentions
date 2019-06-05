@@ -29,22 +29,27 @@ cur_dir = os.path.split(os.path.realpath(__file__))[0]
 sys.path.append("%s/" % cur_dir)
 
 
-def flask_run(config):
-    conf = config.flask_route
-    static_url_path = config.flask_settings.get("static_url_path", None)
-    static_folder = config.flask_settings.get("static_folder", "static")
-    template_folder = config.flask_settings.get("template_folder", "templates")
-    app = blueprint_app.App(conf=conf, static_url_path=static_url_path, static_folder=static_folder,
-                            template_folder=template_folder).create_app()
-    return app
+class FlaskApp():
+    def __init__(self, config_name="config"):
+        self.config = import_string(config_name)
+        self.app = self.app_()
 
+    def app_(self):
+        conf = self.config.flask_route
+        static_url_path = self.config.flask_settings.get("static_url_path", None)
+        static_folder = self.config.flask_settings.get("static_folder", "static")
+        template_folder = self.config.flask_settings.get("template_folder", "templates")
+        app = blueprint_app.App(conf=conf, static_url_path=static_url_path, static_folder=static_folder,
+                                template_folder=template_folder).create_app()
+        return app
 
+    def run(self):
+        host = self.config.flask_settings.get("host", "0.0.0.0")
+        port = int(self.config.flask_settings.get("port", 5000))
+        debug = self.config.flask_settings.get("debug", True)
+        self.app.run(host=host, port=port, debug=debug)
 
 
 if __name__ == '__main__':
-    config = import_string("config")
-    host = config.flask_settings.get("host", "0.0.0.0")
-    port = int(config.flask_settings.get("port", 5000))
-    debug = config.flask_settings.get("debug", True)
-    app = flask_run(config=config)
-    app.run(host=host, port=port, debug=debug)
+    app = FlaskApp()
+    app.run()
