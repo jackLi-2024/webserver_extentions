@@ -27,12 +27,12 @@ from setuptools import find_packages
 
 setup(
     name="webserver_extentions",
-    version="19.06.11",
+    version="19.06.12",
     keywords=("pip", "webserver", "extentions", ""),
     description="flask and webpy frame",
     long_description="flask and webpy frame",
 
-    url="",
+    url="https://github.com/lijiacaigit/webserver_extentions",
     author="Lijiacai",
     author_email="1050518702@qq.com",
 
@@ -40,5 +40,5 @@ setup(
     include_package_data=True,
     platforms="any",
     install_requires=["flask", "flask_restful", "flask_sqlalchemy", "werkzeug", "pymysql", "cx_Oracle", "pymongo",
-                      "elasticsearch", "ConfigParser", "configparser"]
+                      "elasticsearch", "ConfigParser", "configparser", "tornado"]
 )

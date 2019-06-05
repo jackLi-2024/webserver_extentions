@@ -49,6 +49,12 @@ class FlaskApp():
         debug = self.config.flask_settings.get("debug", True)
         self.app.run(host=host, port=port, debug=debug)
 
+    def aysnc_run(self):
+        port = int(self.config.flask_settings.get("port", 5000))
+        server = HTTPServer(WSGIContainer(self.app))
+        server.listen(port=port)
+        IOLoop().current().start()
+
 
 if __name__ == '__main__':
     app = FlaskApp()
