@@ -228,6 +228,7 @@ def get_log(conffile="../conf/logging.conf"):
     outputType = log_conf.get("logging").get("outputtype")
     backupCount = int(log_conf.get("logging").get("backupcount", "5"))
     other_params = log_conf.get("logging")
+    other_params["__name__"] = ""
     del other_params["logger_name"]
     del other_params["outputtype"]
     del other_params["backupcount"]
