@@ -27,7 +27,7 @@ from setuptools import find_packages
 
 setup(
     name="webserver_extentions",
-    version="19.06.12",
+    version="19.06.14",
     keywords=("pip", "webserver", "extentions", ""),
     description="flask and webpy frame",
     long_description="flask and webpy frame",
@@ -40,5 +40,5 @@ setup(
     include_package_data=True,
     platforms="any",
     install_requires=["flask", "flask_restful", "flask_sqlalchemy", "werkzeug", "pymysql", "cx_Oracle", "pymongo",
-                      "elasticsearch", "ConfigParser", "configparser", "tornado"]
+                      "elasticsearch", "ConfigParser", "configparser", "tornado", "celery"]
 )

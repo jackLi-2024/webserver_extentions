@@ -31,6 +31,11 @@ from tornado.wsgi import WSGIContainer
 cur_dir = os.path.split(os.path.realpath(__file__))[0]
 sys.path.append("%s/" % cur_dir)
 
+def exceptionHandler(http_code, msg, app):
+    @app.errorhandler(http_code)
+    def handle(e):
+        return msg
+
 
 class FlaskApp():
     def __init__(self, config_name="config"):
