@@ -44,7 +44,7 @@ class App():
         """
         self.apis = list()
         self.conf = conf
-        self.app = Flask(__name__, static_url_path=static_url_path, static_folder=static_folder,
+        self.app = Flask("__main__", static_url_path=static_url_path, static_folder=static_folder,
                          template_folder=template_folder)
         self.db = SQLAlchemy()
         self.handle_exception = self.app.handle_exception

@@ -27,7 +27,7 @@ from setuptools import find_packages
 
 setup(
     name="webserver_extentions",
-    version="19.06.14",
+    version="19.06.24",
     keywords=("pip", "webserver", "extentions", ""),
     description="flask and webpy frame",
     long_description="flask and webpy frame",
